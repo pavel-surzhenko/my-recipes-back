@@ -72,11 +72,11 @@ router.get('/food/salads', async (req, res) => {
 });
 
 // deserts
-router.get('/food/deserts', async (req, res) => {
+router.get('/food/desserts', async (req, res) => {
     const food = schemas.Food;
 
     try {
-        const foodData = await food.find({ category: 'deserts' });
+        const foodData = await food.find({ category: 'desserts' });
 
         if (foodData) {
             res.send(JSON.stringify(foodData));
