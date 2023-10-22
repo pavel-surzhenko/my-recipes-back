@@ -1,14 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-    email: { type: String, required: true },
-    name: { type: String },
-    entryDate: { type: Date, default: Date.now() },
-});
-
-const Users = mongoose.model('Users', userSchema, 'users');
-
 const foodSchema = new Schema(
     {
         category: { type: String, required: true },
@@ -22,6 +14,6 @@ const foodSchema = new Schema(
 
 const Food = mongoose.model('Food', foodSchema, 'food');
 
-const mySchemas = { Users: Users, Food: Food };
+const mySchemas = { Food: Food };
 
 module.exports = mySchemas;

@@ -2,29 +2,7 @@ const express = require('express');
 const router = express.Router();
 const schemas = require('../modules/schemas');
 
-router.get('/users', async (req, res) => {
-    const users = schemas.Users;
-
-    const userData = await users.find().exec();
-
-    if (userData) {
-        res.send(JSON.stringify(userData));
-    }
-});
-
-router.post('/users', async (req, res) => {
-    const { email, name } = req.body;
-
-    const newUser = new schemas.Users({ email, name });
-    const savedUser = await newUser.save();
-
-    if (savedUser) {
-        res.send('Message send');
-    }
-
-    res.end();
-});
-
+// All food
 router.get('/food', async (req, res) => {
     const food = schemas.Food;
 
@@ -46,6 +24,21 @@ router.post('/food', async (req, res) => {
     }
 
     res.end();
+});
+
+// soup
+router.get('/food/soups', async (req, res) => {
+    const food = schemas.Food;
+
+    try {
+        const foodData = await food.find({ category: 'soups' });
+
+        if (foodData) {
+            res.send(JSON.stringify(foodData));
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Помилка сервера' });
+    }
 });
 
 module.exports = router;
