@@ -41,4 +41,49 @@ router.get('/food/soups', async (req, res) => {
     }
 });
 
+// main
+router.get('/food/main', async (req, res) => {
+    const food = schemas.Food;
+
+    try {
+        const foodData = await food.find({ category: 'main' });
+
+        if (foodData) {
+            res.send(JSON.stringify(foodData));
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Помилка сервера' });
+    }
+});
+
+// salads
+router.get('/food/salads', async (req, res) => {
+    const food = schemas.Food;
+
+    try {
+        const foodData = await food.find({ category: 'main' });
+
+        if (foodData) {
+            res.send(JSON.stringify(foodData));
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Помилка сервера' });
+    }
+});
+
+// deserts
+router.get('/food/deserts', async (req, res) => {
+    const food = schemas.Food;
+
+    try {
+        const foodData = await food.find({ category: 'main' });
+
+        if (foodData) {
+            res.send(JSON.stringify(foodData));
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Помилка сервера' });
+    }
+});
+
 module.exports = router;
