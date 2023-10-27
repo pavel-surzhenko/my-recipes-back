@@ -1,0 +1,22 @@
+const express = require('express');
+const router = express.Router();
+const schemas = require('../modules/schemas');
+
+router.get('/:id', async (req, res) => {
+    const food = schemas.Food;
+    const id = req.params.id;
+
+    try {
+        const foodData = await food.findById(id);
+
+        if (foodData) {
+            res.send(JSON.stringify(foodData));
+        } else {
+            res.status(404).json({ error: 'Not Found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Помилка сервера' });
+    }
+});
+
+module.exports = router;

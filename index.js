@@ -17,7 +17,17 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use('/', router);
+const foodRouter = require('./routes/food');
+const soupsRouter = require('./routes/soups');
+const mainRouter = require('./routes/main');
+const saladsRouter = require('./routes/salads');
+const dessertsRouter = require('./routes/desserts');
+
+app.use('/food', foodRouter);
+app.use('/food/soups', soupsRouter);
+app.use('/food/main', mainRouter);
+app.use('/food/salads', saladsRouter);
+app.use('/food/desserts', dessertsRouter);
 
 const dbOptions = { useUnifiedTopology: true };
 mongoose
