@@ -8,11 +8,13 @@ router.get('/', async (req, res) => {
     try {
         const foodData = await food.find({ category: 'desserts' });
 
-        if (foodData) {
+        if (foodData && foodData.length) {
             res.send(JSON.stringify(foodData));
+        } else {
+            res.status(404).json({ error: 'No desserts find' });
         }
     } catch (error) {
-        res.status(500).json({ error: 'Помилка сервера' });
+        res.status(500).json({ error: 'Server Error' });
     }
 });
 
