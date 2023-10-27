@@ -86,4 +86,22 @@ router.get('/food/desserts', async (req, res) => {
     }
 });
 
+// by id
+router.get('/food/:id', async (req, res) => {
+    const food = schemas.Food;
+    const id = req.params.id;
+
+    try {
+        const foodData = await food.findById(id);
+
+        if (foodData) {
+            res.send(JSON.stringify(foodData));
+        } else {
+            res.send('Not found').status(404);
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Помилка сервера' });
+    }
+});
+
 module.exports = router;
