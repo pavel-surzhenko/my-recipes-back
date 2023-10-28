@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     try {
         const foodData = await food.find({ category: 'soups' });
 
-        if (foodData && foodData.length) {
+        if (foodData) {
             res.send(JSON.stringify(foodData));
         } else {
             res.status(404).json({ error: 'No soups found' });

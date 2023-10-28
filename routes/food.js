@@ -32,7 +32,7 @@ router.get('/:id', async (req, res) => {
     try {
         const foodData = await food.findById(id);
 
-        if (foodData && foodData.length) {
+        if (foodData) {
             res.send(JSON.stringify(foodData));
         } else {
             res.status(404).json({ error: 'Not Found' });

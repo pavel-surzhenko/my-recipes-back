@@ -23,10 +23,10 @@ const saladsRouter = require('./routes/salads');
 const dessertsRouter = require('./routes/desserts');
 
 app.use('/food', foodRouter);
-app.use('/food/soups', soupsRouter);
-app.use('/food/main', mainRouter);
-app.use('/food/salads', saladsRouter);
-app.use('/food/desserts', dessertsRouter);
+app.use('/soups', soupsRouter);
+app.use('/main', mainRouter);
+app.use('/salads', saladsRouter);
+app.use('/desserts', dessertsRouter);
 
 const dbOptions = { useUnifiedTopology: true };
 mongoose

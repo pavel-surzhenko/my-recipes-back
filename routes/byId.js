@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const schemas = require('../modules/schemas');
 
-router.get('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
     const food = schemas.Food;
     const id = req.params.id;
 
