@@ -6,6 +6,7 @@ const foodSchema = new Schema(
         category: { type: String, required: true },
         name: { type: String, required: true },
         instruction: { type: [String], required: true },
+        images: { type: [String] },
     },
     {
         timestamps: true,
