@@ -13,9 +13,9 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const { category, name, instruction, images } = req.body;
+    const { category, name, instruction, time, ingredients, images } = req.body;
 
-    const newFood = new schemas.Food({ category, name, instruction, images });
+    const newFood = new schemas.Food({ category, name, instruction, time, ingredients, images });
     const savedFood = await newFood.save();
 
     if (savedFood) {
