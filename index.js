@@ -26,7 +26,9 @@ const mainRouter = require('./routes/main');
 const saladsRouter = require('./routes/salads');
 const dessertsRouter = require('./routes/desserts');
 const imageRouter = require('./routes/image');
+const home = require('./routes/home');
 
+app.use('/', home);
 app.use('/food', foodRouter);
 app.use('/soups', soupsRouter);
 app.use('/main', mainRouter);
