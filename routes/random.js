@@ -4,10 +4,11 @@ const schemas = require('../modules/schemas');
 
 router.get('/', async (req, res) => {
     const food = schemas.Food;
+    const category = req.query.category;
 
     try {
         const foodData = await food.aggregate([
-            { $match: { category: 'salads' } },
+            { $match: { category: category } },
             { $sample: { size: 1 } },
         ]);
 
