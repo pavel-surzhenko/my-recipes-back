@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const schemas = require('../modules/schemas');
-const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
+const { S3Client, PutObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
 const { v4: uuidv4 } = require('uuid');
 
 const s3 = new S3Client({
@@ -36,6 +36,22 @@ router.post('/', async (req, res) => {
         return res
             .status(201)
             .json({ link: `https://${BUCKET}.s3.eu-north-1.amazonaws.com/${key}` });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+});
+
+router.delete('/', async (req, res) => {
+    const id = req.query.id;
+
+    const command = new DeleteObjectCommand({
+        Bucket: BUCKET,
+        Key: id,
+    });
+
+    try {
+        await s3.send(command);
+        return res.status(201).json({ message: 'File deleted successfully from s3' });
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
