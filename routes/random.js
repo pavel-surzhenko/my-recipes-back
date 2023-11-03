@@ -11,8 +11,9 @@ router.get('/', async (req, res) => {
             { $sample: { size: 1 } },
         ]);
 
-        if (foodData) {
-            res.send(JSON.stringify(foodData));
+        if (foodData.length) {
+            const randomFoodObject = foodData[0];
+            res.send(JSON.stringify(randomFoodObject));
         } else {
             res.status(404).json({ error: 'Not Found' });
         }
