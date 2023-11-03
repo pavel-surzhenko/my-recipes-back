@@ -6,7 +6,10 @@ router.get('/', async (req, res) => {
     const food = schemas.Food;
 
     try {
-        const foodData = await food.findOne().sample(1);
+        const foodData = await food.aggregate([
+            { $match: { category: 'salads' } },
+            { $sample: { size: 1 } },
+        ]);
 
         if (foodData) {
             res.send(JSON.stringify(foodData));

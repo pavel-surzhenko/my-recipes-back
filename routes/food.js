@@ -20,11 +20,24 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     const { category, name, instruction, time, ingredients, images } = req.body;
 
-    const newFood = new schemas.Food({ category, name, instruction, time, ingredients, images });
-    const savedFood = await newFood.save();
+    try {
+        const newFood = new schemas.Food({
+            category,
+            name,
+            instruction,
+            time,
+            ingredients,
+            images,
+        });
+        const savedFood = await newFood.save();
 
-    if (savedFood) {
-        res.send('Food saved');
+        if (savedFood) {
+            res.send('Food saved');
+        } else {
+            res.status(404).json({ error: 'Not saved' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 
     res.end();
