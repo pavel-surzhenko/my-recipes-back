@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
             res.status(404).json({ error: 'Not Found' });
         }
     } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: error.message });
     }
 });
 
@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
             res.status(404).json({ error: 'Not saved' });
         }
     } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: error.message });
     }
 
     res.end();
@@ -56,7 +56,19 @@ router.get('/:id', async (req, res) => {
             res.status(404).json({ error: 'Not Found' });
         }
     } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: error.message });
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    const food = schemas.Food;
+    const id = req.params.id;
+
+    try {
+        await food.deleteOne({ _id: id });
+        res.send(JSON.stringify({ message: 'File deleted successfully' }));
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 

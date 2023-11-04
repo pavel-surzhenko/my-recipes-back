@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
             res.status(404).json({ error: 'No desserts find' });
         }
     } catch (error) {
-        res.status(500).json({ error: 'Server Error' });
+        res.status(500).json({ error: error.message });
     }
 });
 

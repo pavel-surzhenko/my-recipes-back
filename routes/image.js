@@ -41,8 +41,8 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.delete('/', async (req, res) => {
-    const id = req.query.id;
+router.delete('/:id', async (req, res) => {
+    const id = req.params.id;
 
     const command = new DeleteObjectCommand({
         Bucket: BUCKET,

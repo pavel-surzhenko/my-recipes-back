@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
             res.status(404).json({ error: 'No object find by this id' });
         }
     } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: error.message });
     }
 });
 
