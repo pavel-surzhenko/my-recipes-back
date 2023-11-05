@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
         const savedFood = await newFood.save();
 
         if (savedFood) {
-            res.send('Food saved');
+            res.status(201).json({ message: 'Food created', id: savedFood._id });
         } else {
             res.status(404).json({ error: 'Not saved' });
         }
