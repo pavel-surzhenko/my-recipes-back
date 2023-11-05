@@ -72,4 +72,16 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+router.put('/', async (req, res) => {
+    const food = schemas.Food;
+    const { id, ...data } = req.body;
+
+    try {
+        await food.updateOne({ _id: id }, { ...data });
+        res.status(200).json({ message: 'File updated successfully' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 module.exports = router;
