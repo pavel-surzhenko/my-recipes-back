@@ -66,7 +66,7 @@ router.delete('/:id', async (req, res) => {
 
     try {
         await food.deleteOne({ _id: id });
-        res.send(JSON.stringify({ message: 'File deleted successfully' }));
+        res.status(204).json({ message: 'File deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

@@ -51,7 +51,7 @@ router.delete('/:id', async (req, res) => {
 
     try {
         await s3.send(command);
-        return res.status(201).json({ message: 'File deleted successfully from s3' });
+        return res.status(204).json({ message: 'File deleted successfully from s3' });
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
