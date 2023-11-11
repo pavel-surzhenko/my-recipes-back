@@ -5,7 +5,7 @@ const schemas = require('../modules/schemas');
 router.get('/', async (req, res) => {
     const food = schemas.Food;
     const { sort, page } = req.query;
-    const itemsPerPage = 5;
+    const itemsPerPage = 12;
 
     try {
         const totalItems = await food.countDocuments();

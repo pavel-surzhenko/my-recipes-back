@@ -4,9 +4,12 @@ const schemas = require('../modules/schemas');
 
 router.get('/', async (req, res) => {
     const food = schemas.Food;
-    const { sort } = req.query;
+    const { sort, page } = req.query;
+    const itemsPerPage = 12;
 
     try {
+        const totalItems = await food.countDocuments({ category: 'desserts' });
+        const skip = (page - 1) * itemsPerPage;
         let sortOptions = {};
 
         switch (sort) {
@@ -26,10 +29,19 @@ router.get('/', async (req, res) => {
                 sortOptions = {};
                 break;
         }
-        const foodData = await food.find({ category: 'desserts' }).sort(sortOptions);
+        const foodData = await food
+            .find({ category: 'desserts' })
+            .sort(sortOptions)
+            .skip(skip)
+            .limit(itemsPerPage)
+            .exec();
 
         if (foodData && foodData.length) {
-            res.send(JSON.stringify(foodData));
+            res.status(200).json({
+                data: foodData,
+                page,
+                totalPages: Math.ceil(totalItems / itemsPerPage),
+            });
         } else {
             res.status(404).json({ error: 'No desserts find' });
         }
