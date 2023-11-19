@@ -28,6 +28,7 @@ const dessertsRouter = require('./routes/desserts');
 const imageRouter = require('./routes/image');
 const home = require('./routes/home');
 const randomRouter = require('./routes/random');
+const searchRouter = require('./routes/search');
 
 app.use('/', home);
 app.use('/food', foodRouter);
@@ -37,6 +38,7 @@ app.use('/salads', saladsRouter);
 app.use('/desserts', dessertsRouter);
 app.use('/image', upload.single('image'), imageRouter);
 app.use('/random', randomRouter);
+app.use('/search', searchRouter);
 
 const dbOptions = { useUnifiedTopology: true };
 mongoose
