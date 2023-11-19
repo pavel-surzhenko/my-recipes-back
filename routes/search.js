@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     const name = req.query.name;
 
     try {
-        const regex = new RegExp(name, 'i');
+        const regex = new RegExp(`^${name}`, 'i');
 
         const foodData = await food.find({ name: { $regex: regex } }).exec();
 
