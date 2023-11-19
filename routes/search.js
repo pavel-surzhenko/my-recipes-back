@@ -11,7 +11,6 @@ router.get('/', async (req, res) => {
 
         const foodData = await food.find({ name: { $regex: regex } }).exec();
 
-        console.log(foodData);
         if (foodData && foodData.length) {
             res.status(200).json({
                 data: foodData,
