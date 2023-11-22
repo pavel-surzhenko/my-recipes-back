@@ -44,7 +44,7 @@ router.get('/', async (req, res) => {
                 totalPages: Math.ceil(totalItems / itemsPerPage),
             });
         } else {
-            res.status(404).json({ error: 'No salads found' });
+            res.status(200).json({ message: 'No matching food found' });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
